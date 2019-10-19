@@ -38,7 +38,8 @@ class AdvertisementViewModel
             (it.title?.toLowerCase()?.contains(text) ?: false) ||
                     (it.price?.toString()?.toLowerCase()?.contains(text) ?: false) ||
                     (it.city?.toLowerCase()?.contains(text) ?: false) ||
-                    (it.town?.toLowerCase()?.contains(text) ?: false)
+                    (it.town?.toLowerCase()?.contains(text) ?: false) ||
+                    (it.category0?.toLowerCase()?.contains(text) ?: false)
         }
 
         list = list?.toMutableList()
