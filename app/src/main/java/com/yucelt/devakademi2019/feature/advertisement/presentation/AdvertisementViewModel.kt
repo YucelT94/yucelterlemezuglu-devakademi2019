@@ -1,6 +1,6 @@
 package com.yucelt.devakademi2019.feature.advertisement.presentation
 
-import android.view.View
+import android.annotation.SuppressLint
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,20 +16,33 @@ class AdvertisementViewModel
     private val TAG = AdvertisementViewModel::class.java.simpleName
 
     val adapterLiveData = MutableLiveData<List<AdvertisementItemViewData>>()
+    val searchedLiveData = MutableLiveData<List<AdvertisementItemViewData>>()
     val adapterDataSize = ObservableInt()
-    val progressBarVisibilityObservable = ObservableInt(View.GONE)
 
     fun updateAdapterData(offset: Int, size: Int) {
         val params = AdvertisementUseCase.Params(offset, size)
         useCase.execute(
             params = params,
             onSuccess = {
-                progressBarVisibilityObservable.set(View.GONE)
                 adapterLiveData.postValue(it.map { item -> item.toAdvertisementItemViewData() })
             },
             onError = {
                 it.localizedMessage
             }
         )
+    }
+
+    @SuppressLint("DefaultLocale")
+    fun searchAdvertisement(text: String) {
+        var list = adapterLiveData.value?.filter {
+            (it.title?.toLowerCase()?.contains(text) ?: false) ||
+                    (it.price?.toString()?.toLowerCase()?.contains(text) ?: false) ||
+                    (it.city?.toLowerCase()?.contains(text) ?: false) ||
+                    (it.town?.toLowerCase()?.contains(text) ?: false)
+        }
+
+        list = list?.toMutableList()
+
+        searchedLiveData.postValue(list)
     }
 }

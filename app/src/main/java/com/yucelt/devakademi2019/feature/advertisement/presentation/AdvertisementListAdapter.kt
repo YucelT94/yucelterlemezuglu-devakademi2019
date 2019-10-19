@@ -45,6 +45,12 @@ class AdvertisementListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         notifyDataSetChanged()
     }
 
+    fun searchedData(list: List<AdvertisementItemViewData>) {
+        this.viewDatas.clear()
+        this.viewDatas.addAll(list)
+        notifyDataSetChanged()
+    }
+
 
     inner class AdvertisementItemViewHolder(private val dataBinding: ViewDataBinding) :
         RecyclerView.ViewHolder(dataBinding.root) {

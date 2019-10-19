@@ -47,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:gravity="end"
                 android:text='@{viewModel.priceObservable}'
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/barrier_expanded"
@@ -125,6 +126,7 @@
                 android:id="@+id/view_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="end"
                 android:paddingStart="0dp"
                 android:paddingEnd="20dp"
                 android:text="@{viewModel.viewCountObservable}"

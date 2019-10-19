@@ -3,7 +3,9 @@ package com.yucelt.devakademi2019.feature.advertisement.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -32,8 +34,8 @@ class AdvertisementActivity : DaggerAppCompatActivity() {
 
     companion object {
         private val TAG = AdvertisementActivity::class.java.name
-        private val START_POSITION = 1
-        private val NUMBER_OF_ITEMS = 50
+        private const val START_POSITION = 1
+        private const val NUMBER_OF_ITEMS = 50
 
         /**
          * Activity geçişi için intent oluşturma fonksiyonu
@@ -44,7 +46,6 @@ class AdvertisementActivity : DaggerAppCompatActivity() {
     private val paginationController = object : PaginationController() {
         override fun onLoadMore() {
             viewModel.run {
-                // progressBarVisibilityObservable.set(View.VISIBLE)
                 updateAdapterData(viewModel.adapterDataSize.get() + 1, NUMBER_OF_ITEMS)
             }
         }
@@ -69,19 +70,40 @@ class AdvertisementActivity : DaggerAppCompatActivity() {
             advertisementList.addOnScrollListener(paginationController)
             advertisementList.adapter = adapter
             advertisementList.addItemDecoration(divider)
+            searchButton.setOnClickListener {
+                toolbarTitle.visibility = View.GONE
+                searchEditText.visibility = View.VISIBLE
+            }
+
         }
     }
 
     private fun observeViewModel() {
-        viewModel.adapterLiveData.observe(this@AdvertisementActivity, Observer {
-            adapter?.run {
-                addData(it)
-                itemCount.let { it1 -> viewModel.adapterDataSize.set(it1) }
+        viewModel.run {
+            updateAdapterData(START_POSITION, NUMBER_OF_ITEMS)
+            adapterLiveData.observe(this@AdvertisementActivity, Observer {
+                adapter?.run {
+                    addData(it)
+                    itemCount.let { it1 -> viewModel.adapterDataSize.set(it1) }
+                }
+            })
+            searchedLiveData.observe(this@AdvertisementActivity, Observer {
+                adapter?.run {
+                    searchedData(it)
+                }
+            })
+            binding.searchEditText.doOnTextChanged { text, _, _, _ ->
+                viewModel.searchAdvertisement(text.toString())
             }
-        })
+        }
 
-        viewModel.updateAdapterData(START_POSITION, NUMBER_OF_ITEMS)
     }
 
-    override fun onBackPressed() {}
+    override fun onBackPressed() {
+        binding.run {
+            toolbarTitle.visibility = View.VISIBLE
+            searchEditText.setText("")
+            searchEditText.visibility = View.GONE
+        }
+    }
 }
