@@ -6,6 +6,8 @@ import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import com.yucelt.devakademi2019.R
 import com.yucelt.devakademi2019.base.devcomponent.DevComponentViewModel
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 
 /**
@@ -21,18 +23,20 @@ class AdvertisementItemViewModel : DevComponentViewModel<AdvertisementItemViewDa
     val detailViewVisibilityObservable = ObservableInt(View.GONE)
     val colorObservable = ObservableInt(R.color.white)
 
-
     override fun handleInput(viewData: AdvertisementItemViewData?) {
         viewData?.run {
             titleObservable.set(title)
             locationObservable.set("$town/$city")
-            priceObservable.set("$price TL")
+            priceObservable.set("${priceFormatter(price)} TL")
             descriptionObservable.set(description)
             viewCountObservable.set("$viewCount Görüntülenme")
             category0?.let { getStatusColor(it) }?.let { colorObservable.set(it) }
         }
     }
 
+    /**
+     * setItem expand or collapse
+     */
     fun expandOrCollapse(expanded: Boolean) {
         if (expanded) detailViewVisibilityObservable.set(View.VISIBLE)
         else detailViewVisibilityObservable.set(View.GONE)
@@ -53,5 +57,15 @@ class AdvertisementItemViewModel : DevComponentViewModel<AdvertisementItemViewDa
             productState.contains("Hayvanlar") -> R.color.color_hayvanlar
             else -> R.color.white
         }
+    }
+
+    /**
+     * Format for numbers
+     */
+    private fun priceFormatter(price: Double?): String {
+        val decimalFormat = DecimalFormat("#,###.00")
+        decimalFormat.roundingMode = RoundingMode.CEILING
+
+        return decimalFormat.format(price)
     }
 }
