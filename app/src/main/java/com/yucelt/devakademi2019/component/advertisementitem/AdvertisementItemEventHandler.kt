@@ -5,10 +5,10 @@ import com.yucelt.devakademi2019.base.devcomponent.DevComponentEventHandler
 /**
  * Created by YucelTerlemezoglu on 19.10.2019.
  */
-interface AdvertisementItemEventHandlerl : DevComponentEventHandler {
+interface AdvertisementItemEventHandler : DevComponentEventHandler {
 
     /**
      * Single click callback
      */
-    fun onAdvertisementClick()
+    fun onAdvertisementClick(viewData: AdvertisementItemViewData)
 }

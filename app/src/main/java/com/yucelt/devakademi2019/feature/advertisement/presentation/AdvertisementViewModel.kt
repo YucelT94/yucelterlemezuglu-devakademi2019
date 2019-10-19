@@ -1,5 +1,7 @@
 package com.yucelt.devakademi2019.feature.advertisement.presentation
 
+import android.view.View
+import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.yucelt.devakademi2019.component.advertisementitem.AdvertisementItemViewData
@@ -14,12 +16,15 @@ class AdvertisementViewModel
     private val TAG = AdvertisementViewModel::class.java.simpleName
 
     val adapterLiveData = MutableLiveData<List<AdvertisementItemViewData>>()
+    val adapterDataSize = ObservableInt()
+    val progressBarVisibilityObservable = ObservableInt(View.GONE)
 
-    fun generataAdapterData(offset: Int, size: Int) {
+    fun updateAdapterData(offset: Int, size: Int) {
         val params = AdvertisementUseCase.Params(offset, size)
         useCase.execute(
             params = params,
             onSuccess = {
+                progressBarVisibilityObservable.set(View.GONE)
                 adapterLiveData.postValue(it.map { item -> item.toAdvertisementItemViewData() })
             },
             onError = {

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DevAkademi2019</string>
+    <string name="search_hint">Search Advertisement</string>
+    <string name="search">Search</string>
 </resources>

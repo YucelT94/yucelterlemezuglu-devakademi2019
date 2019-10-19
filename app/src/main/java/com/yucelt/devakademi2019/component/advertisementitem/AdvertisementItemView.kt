@@ -30,7 +30,7 @@ class AdvertisementItemView :
         val LAYOUT_RES_ID = R.layout.component_advertisement_item
     }
 
-    var eventHandler: AdvertisementItemEventHandlerl? = null
+    var eventHandler: AdvertisementItemEventHandler? = null
 
 
     constructor(context: Context) : this(context, null)
