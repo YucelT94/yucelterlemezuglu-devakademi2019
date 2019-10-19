@@ -4,11 +4,11 @@ import com.yucelt.devakademi2019.feature.advertisement.data.response.Advertiseme
 import io.reactivex.Single
 
 /**
- * Created by YucelTerlemezoglu on 22.09.2019.
+ * Created by YucelTerlemezoglu on 19.10.2019.
  */
 interface AdvertisementRepository {
     /**
      * Get my orders list datas
      */
-    fun getMyOrders(): Single<List<AdvertisementResponse>>
+    fun getAdvertisementList(offset: Int, size: Int): Single<List<AdvertisementResponse>>
 }

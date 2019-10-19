@@ -12,7 +12,7 @@ import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 /**
- * Created by YucelTerlemezoglu on 22.09.2019.
+ * Created by YucelTerlemezoglu on 19.10.2019.
  */
 @Singleton
 @Component(

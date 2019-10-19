@@ -5,7 +5,7 @@ import com.yucelt.devakademi2019.base.network.DevResponse
 import com.yucelt.devakademi2019.component.advertisementitem.AdvertisementItemViewData
 
 /**
- * Created by YucelTerlemezoglu on 21.09.2019.
+ * Created by YucelTerlemezoglu on 19.10.2019.
  */
 class AdvertisementResponse : DevResponse() {
     @SerializedName("id")
@@ -57,13 +57,11 @@ class AdvertisementResponse : DevResponse() {
      * Advertisement Model of Response
      */
 
-    fun toAdvertisementItemViewData() = id?.let {
-        AdvertisementItemViewData(
-            id = it,
-            title = title,
-            town = town,
-            city = city,
-            price = price
-        )
-    }
+    fun toAdvertisementItemViewData() = AdvertisementItemViewData(
+        id = id,
+        title = title,
+        town = town,
+        city = city,
+        price = price
+    )
 }

@@ -4,6 +4,10 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.google.gson.Gson
+import com.yucelt.devakademi2019.base.room.AppDatabase
+import com.yucelt.devakademi2019.feature.advertisement.data.AdvertisementApiService
+import com.yucelt.devakademi2019.feature.advertisement.data.repo.AdvertisementDataRepository
+import com.yucelt.devakademi2019.feature.advertisement.domain.AdvertisementRepository
 import com.yucelt.devakademi2019.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -93,22 +97,22 @@ class NetworkModule {
         return activeNetwork != null && activeNetwork.isConnected
     }
 
+    @Singleton
+    @Provides
+    fun provideService(retrofit: Retrofit): AdvertisementApiService {
+        return retrofit.create(AdvertisementApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAdvertisementRepository(
+        appDatabase: AppDatabase,
+        service: AdvertisementApiService
+    ): AdvertisementRepository {
+        return AdvertisementDataRepository(appDatabase, service)
+    }
+
     // TODO: Düzenle
-    // @Singleton
-    // @Provides
-    // fun provideService(retrofit: Retrofit): My//OrdersApiService {
-    //     return retrofit.create(MyOrdersApiService::class.java)
-    // }
-
-    // @Singleton
-    // @Provides
-    // fun provideMyOrdersRepository(
-    //     appDatabase: AppDatabase,
-    //     service: MyOrdersApiService
-    // ): MyOrdersRepository {
-    //     return MyOrdersDataRepository(appDatabase, service)
-    // }
-
     // @Singleton
     // @Provides
     // fun provideLoginRepository(

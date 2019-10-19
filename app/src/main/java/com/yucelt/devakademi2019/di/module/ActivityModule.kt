@@ -1,6 +1,8 @@
 package com.yucelt.devakademi2019.di.module
 
+import com.yucelt.devakademi2019.feature.advertisement.presentation.AdvertisementActivity
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 
 /**
@@ -10,6 +12,6 @@ import dagger.android.support.AndroidSupportInjectionModule
 interface ActivityModule {
 
     // TODO: Activituleri ekle
-    // @ContributesAndroidInjector
-    // fun myOrdersActivityInjector(): MyOrdersActivity
+    @ContributesAndroidInjector
+    fun advertisementActivityInjector(): AdvertisementActivity
 }

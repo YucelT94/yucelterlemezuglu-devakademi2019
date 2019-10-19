@@ -18,9 +18,13 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="start"
+            android:singleLine="true"
             android:text='@{viewModel.titleObservable}'
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/barrier"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="TITLE" />
@@ -34,15 +38,21 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="PRICE" />
 
-        <TextView
-            android:id="@+id/location"
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:barrierDirection="start"
+            app:constraint_referenced_ids="price" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:text='@{viewModel.locationObservable}'
+            app:layout_constraintEnd_toStartOf="@id/barrier"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title"
             tools:text="LOCATION" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

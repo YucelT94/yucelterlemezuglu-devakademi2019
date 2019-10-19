@@ -11,7 +11,7 @@ import javax.inject.Inject
 import kotlin.properties.Delegates
 
 /**
- * Created by YucelTerlemezoglu on 22.09.2019.
+ * Created by YucelTerlemezoglu on 19.10.2019.
  */
 class MainApplication : Application(), HasActivityInjector {
 

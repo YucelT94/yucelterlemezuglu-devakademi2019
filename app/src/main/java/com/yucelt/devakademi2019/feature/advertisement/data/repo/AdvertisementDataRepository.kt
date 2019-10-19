@@ -14,5 +14,6 @@ class AdvertisementDataRepository(
     private val service: AdvertisementApiService
 ) : AdvertisementRepository {
 
-    override fun getMyOrders(): Single<List<AdvertisementResponse>> = service.getAdvertisementList()
+    override fun getAdvertisementList(offset: Int, size: Int): Single<List<AdvertisementResponse>> =
+        service.getAdvertisementList(offset, size)
 }
