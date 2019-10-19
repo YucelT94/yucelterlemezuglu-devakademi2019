@@ -1,4 +1,4 @@
-package com.yucelt.devakademi2019
+package com.yucelt.devakademi2019.util
 
 /**
  * Created by YucelTerlemezoglu on 19.10.2019.

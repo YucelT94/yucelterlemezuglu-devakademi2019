@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.google.gson.Gson
-import com.yucelt.devakademi2019.Constants.BASE_URL
+import com.yucelt.devakademi2019.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache

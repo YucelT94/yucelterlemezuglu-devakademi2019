@@ -13,9 +13,6 @@ class AdvertisementDataRepository(
     private val database: AppDatabase,
     private val service: AdvertisementApiService
 ) : AdvertisementRepository {
-    override fun updateUser(id: Long, rememberMe: Boolean): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
-    override fun getMyOrders(): Single<List<AdvertisementResponse>> = service.getMyOrders()
+    override fun getMyOrders(): Single<List<AdvertisementResponse>> = service.getAdvertisementList()
 }
