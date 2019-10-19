@@ -29,7 +29,7 @@ class AdvertisementItemViewModel : DevComponentViewModel<AdvertisementItemViewDa
             locationObservable.set("$town/$city")
             priceObservable.set("${priceFormatter(price)} TL")
             descriptionObservable.set(description)
-            viewCountObservable.set("$viewCount Görüntülenme")
+            viewCountObservable.set("$viewCount View")
             category0?.let { getStatusColor(it) }?.let { colorObservable.set(it) }
         }
     }
