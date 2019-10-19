@@ -8,5 +8,8 @@ data class AdvertisementItemViewData(
     val title: String? = null,
     val town: String? = null,
     val city: String? = null,
-    val price: Double? = null
+    val price: Double? = null,
+    val description: String? = null,
+    val category0: String? = null,
+    val viewCount: Int? = null
 )

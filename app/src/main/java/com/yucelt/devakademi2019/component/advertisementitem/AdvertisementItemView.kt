@@ -2,10 +2,14 @@ package com.yucelt.devakademi2019.component.advertisementitem
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
+import androidx.transition.*
 import com.yucelt.devakademi2019.R
 import com.yucelt.devakademi2019.base.devcomponent.DevComponentView
 import com.yucelt.devakademi2019.databinding.ComponentAdvertisementItemBinding
+import kotlinx.android.synthetic.main.component_advertisement_item.view.*
 
 /**
  * Created by YucelTerlemezoglu on 19.10.2019.
@@ -53,6 +57,21 @@ class AdvertisementItemView :
     }
 
     private fun init() {
+        dataBinding.run {
+            rootView.setOnClickListener {
+                val expanded = detail_section.visibility != View.VISIBLE
+                this@AdvertisementItemView.viewModel?.expandOrCollapse(expanded)
 
+                TransitionManager.beginDelayedTransition(detail_section.rootView as ViewGroup,
+                    AutoTransition()
+                        .setOrdering(TransitionSet.ORDERING_TOGETHER)
+                        .addListener(object : TransitionListenerAdapter() {
+                            override fun onTransitionEnd(transition: Transition) {
+                                eventHandler?.onExpandedOrCollapsed(expanded)
+                            }
+                        })
+                )
+            }
+        }
     }
 }

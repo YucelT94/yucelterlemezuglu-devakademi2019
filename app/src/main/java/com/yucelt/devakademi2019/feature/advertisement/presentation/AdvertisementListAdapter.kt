@@ -21,8 +21,6 @@ class AdvertisementListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 
     private val viewDatas: MutableList<AdvertisementItemViewData> = ArrayList()
 
-    var eventHandler: AdvertisementItemEventHandler? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val holderBinding = DataBindingUtil.inflate<ViewDataBinding>(
             LayoutInflater.from(parent.context), R.layout.row_list_item, parent, false
@@ -53,9 +51,6 @@ class AdvertisementListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         fun onBind(viewData: AdvertisementItemViewData) {
             val binding = dataBinding as RowListItemBinding
             binding.item = viewData
-            binding.root.setOnClickListener {
-                eventHandler?.onAdvertisementClick(viewData)
-            }
         }
     }
 }

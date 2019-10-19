@@ -6,4 +6,17 @@
 
     <color name="white">#FFFFFF</color>
     <color name="lines">#E6E5E9</color>
+
+
+
+    <color name="color_emlak">#FCAE19</color>
+    <color name="color_vasita">#F32B2D</color>
+    <color name="color_yedek_parca">#4DAE50</color>
+    <color name="color_ikinci_el">#6C6FFB</color>
+    <color name="color_is_makineleri">#A55FFD</color>
+    <color name="color_ustalar">#469BE1</color>
+    <color name="color_ozel_ders">#52B27C</color>
+    <color name="color_is_ilanlari">#94BB3D</color>
+    <color name="color_yardimci">#FE7919</color>
+    <color name="color_hayvanlar">#1ABAE8</color>
 </resources>

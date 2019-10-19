@@ -33,25 +33,25 @@ class AdvertisementResponse : DevResponse() {
     var viewCount: Int? = null
 
     @SerializedName("c0")
-    var c0: String? = null
+    var category0: String? = null
 
     @SerializedName("c1")
-    var c1: String? = null
+    var category1: String? = null
 
     @SerializedName("c2")
-    var c2: String? = null
+    var category2: String? = null
 
     @SerializedName("c3")
-    var c3: String? = null
+    var category3: String? = null
 
     @SerializedName("c4")
-    var c4: String? = null
+    var category4: String? = null
 
     @SerializedName("c5")
-    var c5: String? = null
+    var category5: String? = null
 
     @SerializedName("c6")
-    var c6: String? = null
+    var category6: String? = null
 
     /**
      * Advertisement Model of Response
@@ -62,6 +62,9 @@ class AdvertisementResponse : DevResponse() {
         title = title,
         town = town,
         city = city,
-        price = price
+        price = price,
+        description = description,
+        category0 = category0,
+        viewCount = viewCount
     )
 }

@@ -8,7 +8,7 @@ import com.yucelt.devakademi2019.base.devcomponent.DevComponentEventHandler
 interface AdvertisementItemEventHandler : DevComponentEventHandler {
 
     /**
-     * Single click callback
+     * ExpandableItemView expanded or collapsed callback
      */
-    fun onAdvertisementClick(viewData: AdvertisementItemViewData)
+    fun onExpandedOrCollapsed(expanded: Boolean)
 }
